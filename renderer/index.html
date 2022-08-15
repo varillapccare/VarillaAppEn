@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" />
+    <title>Varilla PC Care</title>
+
+    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+    <script src="app.js"></script>
+  </head>
+  <body>
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+          <ul class="sidebar-nav">
+              <li>
+                    <button id="homeBtn" onclick="activateHome()" style="background-color: transparent; border: none; width: 100%; height: 150px;">
+                        <ion-icon style="font-size: 50px;" name="home-outline"></ion-icon>
+                        <br />
+                        Home
+                    </button>
+              </li>
+              <li>
+                    <button id="protectionBtn" onclick="activateProtection()" style="color: white; background-color: transparent; border: none; width: 100%; height: 150px;">
+                        <ion-icon style="font-size: 50px;" name="shield-checkmark-outline"></ion-icon>
+                        <br />
+                        Protection
+                    </button>
+              </li>
+              <li>
+                    <button id="privacyBtn" onclick="activatePrivacy()" style="color: white; background-color: transparent; border: none; width: 100%; height: 150px;">
+                        <ion-icon style="font-size: 50px;" name="lock-closed-outline"></ion-icon>
+                        <br />
+                        Privacy
+                    </button>
+              </li>
+              <li>
+                    <button id="networkBtn" onclick="activateNetwork()" style="color: white; background-color: transparent; border: none; width: 100%; height: 150px;">
+                        <ion-icon style="font-size: 50px;" name="globe-outline"></ion-icon>
+                        <br />
+                        Network
+                    </button>
+              </li>
+              <li>
+                    <button id="profileBtn" onclick="activateProfile()" style="color: white; background-color: transparent; border: none; width: 100%; height: 150px;">
+                      <ion-icon style="font-size: 50px;" name="person-outline"></ion-icon>
+                        <br />
+                        Profile
+                    </button>
+              </li>
+          </ul>
+      </div>
+      <!-- /#sidebar-wrapper -->
+
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+          <div class="container-fluid">
+
+              <!-- home section -->
+              <div id="homeSection" class="row">
+                  <div class="col-lg-12">
+                      <img src="assets/icon1.png" height="300px" style="margin-top: 50px;"/>
+                      <h1>We are protecting you!</h1>
+                      <br />
+                      <br />
+                      <div class="row">
+                            <div class="col-4">
+                              <h1><span id="cpu">00</span> %</h1>
+                            </div>
+                          <div class="col-4">
+                              <h1><span id="mem">00</span> %</h1>
+                            </div>
+                          <div class="col-4">
+                              <h1><span id="total-mem">00</span> GB</h1>
+                            </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-4">
+                          <strong>CPU Usage</strong>
+                        </div>
+                      <div class="col-4">
+                          <strong>GPU Usage</strong>
+                        </div>
+                      <div class="col-4">
+                          <strong>Total RAM</strong>
+                        </div>
+                        </div>
+
+                        <br />
+                        <br />
+                        <button onclick="activateProtection()" class="button-82-pushable" role="button">
+                          <span class="button-82-shadow"></span>
+                          <span class="button-82-edge"></span>
+                          <span class="button-82-front text">
+                            Quick Scan
+                          </span>
+                        </button>
+                  </div>
+              </div>
+
+              <!-- protection section -->
+              <div id="protectionSection" style="display: none;" class="row">
+                <div class="col-lg-12">
+                  <ion-icon style="font-size: 100px; margin-top: 50px;" name="shield-checkmark-outline"></ion-icon>
+                  <h1 style="margin-top: 30px;">
+                    You are safe with us!
+                  </h1>
+                  <br />
+                  <br />
+                  <br />
+                  <div id="beforescanclicked">
+                    <div>
+                      <button onclick="scanNow()" class="button-82-pushable" role="button">
+                        <span class="button-82-shadow"></span>
+                        <span class="button-82-edge"></span>
+                        <span class="button-82-front text">
+                          Quick Scan
+                        </span>
+                      </button>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <h4>This will scan for corrupted files and viruses on your computer.</h4>
+                    <br />
+                    <h5><img src="assets/lightbulb.png" height="40" style="padding-bottom: 10px;"/> Varilla keeps your system safe and secure !</h5>
+                    <h5><img src="assets/lightbulb.png" height="40" style="padding-bottom: 10px;"/>  Keep your PC drivers up to date !</h5>
+                    <h5><img src="assets/lightbulb.png" height="40" style="padding-bottom: 10px;"/>  Use varilla to clean up corrupted files !</h5>
+                    <h5><img src="assets/lightbulb.png" height="40" style="padding-bottom: 10px;"/> Make your PC look like a new one !</h5>
+                  </div>
+                  <div style="display: none;" id="afterscanclicked">
+                    <div class="loading">
+                      <span>Scan</span>
+                    </div>
+                    <h4 class="scanlist">
+                      <div id="loader1" style="margin-right: 10px;" class="spinner-border text-primary" role="status">
+                      </div>
+                      <ion-icon id="check1" style="color: rgb(0, 199, 0); display: none;" name="checkmark-circle-outline"></ion-icon>
+                      System Details
+                    </h4>
+                    <h4 class="scanlist">
+                      <div id="loader2" style="margin-right: 10px;" class="spinner-border text-primary" role="status">
+                      </div>
+                      <ion-icon id="check2" style="color: rgb(0, 199, 0); display: none;" name="checkmark-circle-outline"></ion-icon>
+                      Computer storage
+                    </h4>
+                    <h4 class="scanlist">
+                      <div id="loader3" style="margin-right: 10px;" class="spinner-border text-primary" role="status">
+                      </div>
+                      <ion-icon id="check3" style="color: rgb(0, 199, 0); display: none;" name="checkmark-circle-outline"></ion-icon>
+                      Privacy and Protection
+                    </h4>
+                    <h4 class="scanlist">
+                      <div id="loader4" style="margin-right: 10px;" class="spinner-border text-primary" role="status">
+                      </div>
+                      <ion-icon id="check4" style="color: rgb(0, 199, 0); display: none;" name="checkmark-circle-outline"></ion-icon>
+                      Browsing history
+                    </h4>
+                    <h4 class="scanlist">
+                      <div id="loader5" style="margin-right: 10px;" class="spinner-border text-primary" role="status">
+                      </div>
+                      <ion-icon id="check5" style="color: rgb(0, 199, 0); display: none;" name="checkmark-circle-outline"></ion-icon>
+                      Danger
+                    </h4>
+                    <h4 class="scanlist">
+                      <div id="loader6" style="margin-right: 10px;" class="spinner-border text-primary" role="status">
+                      </div>
+                      <ion-icon id="check6" style="color: rgb(0, 199, 0); display: none;" name="checkmark-circle-outline"></ion-icon>
+                      Security
+                    </h4>
+                  </div>
+                  <div style="display: none; text-align: left;" id="scancompleted">
+                    <div style="text-align: left; margin-left: 100px;">
+                      <div>
+                        <h3 id="show1" style="font-weight: 700;">System Details</h3>
+
+                        <br />
+                        
+                        <div id="show2" class="row">
+                          <div class="col-1">
+                            <img src="assets/windows.png" height="40px"/>
+                          </div>
+                          <div class="col-11">
+                            <h4 style="font-weight: 600;">Operating System</h4>
+                          </div>
+                        </div>
+                        <div id="show3" class="row">
+                          <div class="col-1">
+                          </div>
+                          <div class="col-11">
+                            <h6 id="os" style="color: gray">Microsoft Windows 11 Home Single Language English (India)</h6>
+                          </div>
+                        </div>
+                        <br />
+                        <div id="show4" class="row">
+                          <div class="col-1">
+                            <img src="assets/laptop.png" height="40px"/>
+                          </div>
+                          <div class="col-11">
+                            <h4 style="font-weight: 600;">Model</h4>
+                          </div>
+                        </div>
+                        <div id="show5" class="row">
+                          <div class="col-1">
+                          </div>
+                          <div class="col-11">
+                            <h6 id="model" style="color: gray">Lenovo / 82B5</h6>
+                          </div>
+                        </div>
+                        <br />
+                        <div id="show6" class="row">
+                          <div class="col-1">
+                            <img src="assets/cpu.png" height="40px"/>
+                          </div>
+                          <div class="col-11">
+                            <h4 style="font-weight: 600;">CPU</h4>
+                          </div>
+                        </div>
+                        <div id="show7" class="row">
+                          <div class="col-1">
+                          </div>
+                          <div class="col-11">
+                            <h6 id="cpuInfo" style="color: gray">AMD Ryzen 5 4600H</h6>
+                          </div>
+                        </div>
+                        <br />
+                        <div id="show8" class="row">
+                          <div class="col-1">
+                            <img src="assets/graphics-card.png" height="40px"/>
+                          </div>
+                          <div class="col-11">
+                            <h4 style="font-weight: 600;">GPU</h4>
+                          </div>
+                        </div>
+                        <div id="show9" class="row">
+                          <div class="col-1">
+                          </div>
+                          <div class="col-11">
+                            <h6 id="video" style="color: gray">Intel Integrated Graphics Card</h6>
+                          </div>
+                        </div>
+                      </div>
+
+                      <br />
+                      <br />
+
+                      <div style="text-align: center;" id="freeAccountLocked">
+                        <img src="assets/buypremium.png" height="400px"/>
+                      </div>
+                      <div id="premiumAccountUnlocked">
+                        <div>
+                          <h3 id="show10" style="font-weight: 700;">Computer storage</h3>
+
+                          <br />
+                          
+                          <div id="show11" class="row">
+                            <div class="col-1">
+                              <img src="assets/folder.png" height="40px"/>
+                            </div>
+                            <div class="col-11">
+                              <h4 style="font-weight: 600;">Storage type / Storage Name</h4>
+                            </div>
+                          </div>
+                          <div id="show12" class="row">
+                            <div class="col-1">
+                            </div>
+                            <div class="col-11">
+                              <h6 id="storage" style="color: gray">SAMSUNG xxxxxxxxxxxx-xxxx</h6>
+                            </div>
+                          </div>
+                          <br />
+                          <div id="show13" class="row">
+                            <div class="col-1">
+                              <img src="assets/pie-chart.png" height="40px"/>
+                            </div>
+                            <div class="col-11">
+                              <h4 style="font-weight: 600;">Total memory</h4>
+                            </div>
+                          </div>
+                          <div id="show14" class="row">
+                            <div class="col-1">
+                            </div>
+                            <div class="col-11">
+                              <h6 id="totalStorageAvailable" style="color: gray">400 GB</h6>
+                            </div>
+                          </div>                                  
+                        </div>
+
+                        <br />
+                        <br />
+
+                        <div>
+                          <h3 id="show15" style="font-weight: 700;">Privacy and Protection</h3>
+
+                          <br />
+                          
+                          <div id="show16" class="row">
+                            <div class="col-1">
+                              <img src="assets/file-explorer.png" height="40px"/>
+                            </div>
+                            <div class="col-11">
+                              <h4 style="font-weight: 600;">Damaged Files</h4>
+                            </div>
+                          </div>
+                          <div id="show17" class="row">
+                            <div class="col-1">
+                            </div>
+                            <div class="col-11">
+                              <h6 style="color: gray">401 Affected Files</h6>
+                            </div>
+                          </div>
+                          <br />
+                          <div id="show18" class="row">
+                            <div class="col-1">
+                              <img src="assets/data-leak.png" height="40px"/>
+                            </div>
+                            <div class="col-11">
+                              <h4 style="font-weight: 600;">Sensitive Data Breach</h4>
+                            </div>
+                          </div>
+                          <div id="show19" class="row">
+                            <div class="col-1">
+                            </div>
+                            <div class="col-11">
+                              <h6 style="color: gray">Unprotected 3GB of sensitive data</h6>
+                            </div>
+                          </div>
+                          <br />
+                          <div id="show20" class="row">
+                            <div class="col-1">
+                              <img src="assets/warning.png" height="40px"/>
+                            </div>
+                            <div class="col-11">
+                              <h4 style="font-weight: 600;">Malware threats</h4>
+                            </div>
+                          </div>
+                          <div id="show21" class="row">
+                            <div class="col-1">
+                            </div>
+                            <div class="col-11">
+                              <h6 style="color: gray">59 files have made your PC vulnerable</h6>
+                            </div>
+                          </div>                                  
+                        </div>
+
+                        <br />
+                        <br />
+
+                        <div>
+                          <h3 id="show22" style="font-weight: 700;">Browsing history</h3>
+
+                          <br />
+                          
+                          <div id="show23" class="row">
+                            <div class="col-1">
+                              <img src="assets/file-explorer.png" height="40px"/>
+                            </div>
+                            <div class="col-11">
+                              <h4 style="font-weight: 600;">Malicious download</h4>
+                            </div>
+                          </div>
+                          <div id="show24" class="row">
+                            <div class="col-1">
+                            </div>
+                            <div class="col-11">
+                              <h6 style="color: gray">38 Malicious Downloaded Files</h6>
+                            </div>
+                          </div>
+                          <br />
+                          <div id="show25" class="row">
+                            <div class="col-1">
+                              <img src="assets/data-leak.png" height="40px"/>
+                            </div>
+                            <div class="col-11">
+                              <h4 style="font-weight: 600;">Clear search history</h4>
+                            </div>
+                          </div>
+                          <div id="show26" class="row">
+                            <div class="col-1">
+                            </div>
+                            <div class="col-11">
+                              <h6 style="color: gray">3GB of unnecessary cache files</h6>
+                            </div>
+                          </div>                                
+                        </div>
+                      </div>
+
+                      <br />
+                      <br />
+                    </div>
+                    
+                    <div id="protectionBottomNotActive">
+                      <p class="marquee">
+                        <span style="color: #0084ff;">Enable VARILLA Premium - Please contact us with this number <strong class="tfn">050-4444-6666</strong> (Toll-Free Number) - &nbsp;</span>
+                      </p>
+                      <p class="marquee marquee2">
+                        <span style="color: #0084ff;">Enable VARILLA Premium - Please contact us with this number <strong class="tfn">050-4444-6666</strong> (Toll-Free Number) - &nbsp;</span>
+                      </p>
+                    </div>
+
+                    <div style="text-align: center;" id="protectionBottomActive">
+                      <button class="button-82-pushable" role="button">
+                        <span class="button-82-shadow"></span>
+                        <span class="button-82-edge"></span>
+                        <span class="button-82-front text">
+                          Varilla is protecting you !
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- privacy section -->
+              <div id="privacySection" style="display: none;" class="row">
+                <div class="col-lg-12">
+                  <ion-icon style="font-size: 100px; margin-top: 50px;" name="lock-closed-outline"></ion-icon>
+                  <h1 style="margin-top: 30px;">
+                    Secure Vault
+                  </h1>
+                  <br />  
+                  <br />
+                  <div class="row">
+                    <div class="col-6">
+                      <h5>Computer Password</h5>
+                    </div>
+                    <div class="col-6">
+                      <input id="pass1" placeholder="Password" type="password" style="margin-right: 10px; width: 200px; border-radius: 20px; border: 1px solid gray; padding: 5px;"/>
+                      <ion-icon onclick="togglepass1()" id="eye1" style="cursor: pointer;" name="eye-off-outline"></ion-icon>
+                    </div>
+                  </div>
+                  <br />  
+                  <br />
+                  <div class="row">
+                    <div class="col-6">
+                      <h5>WiFi Password</h5>
+                    </div>
+                    <div class="col-6">
+                      <input id="pass2" placeholder="Password" type="password" style="margin-right: 10px; width: 200px; border-radius: 20px; border: 1px solid gray; padding: 5px;"/>
+                      <ion-icon onclick="togglepass2()" id="eye2" style="cursor: pointer;" name="eye-off-outline"></ion-icon>
+                    </div>
+                  </div>
+                  <br />  
+                  <br />
+                  <div class="row">
+                    <div class="col-6">
+                      <h5>Gmail Password</h5>
+                    </div>
+                    <div class="col-6">
+                      <input id="pass3" placeholder="Password" type="password" style="margin-right: 10px; width: 200px; border-radius: 20px; border: 1px solid gray; padding: 5px;"/>
+                      <ion-icon onclick="togglepass3()" id="eye3" style="cursor: pointer;" name="eye-off-outline"></ion-icon>
+                    </div>
+                  </div>
+                  <br />  
+                  <br />
+                  <div class="row">
+                    <div class="col-6">
+                      <h5>Phone Password</h5>
+                    </div>
+                    <div class="col-6">
+                      <input id="pass4" placeholder="Password" type="password" style="margin-right: 10px; width: 200px; border-radius: 20px; border: 1px solid gray; padding: 5px;"/>
+                      <ion-icon onclick="togglepass4()" id="eye4" style="cursor: pointer;" name="eye-off-outline"></ion-icon>
+                    </div>
+                  </div>
+                  <br />
+                  <br />
+                  <button onclick="savePasswords()" type="button" style="border-radius: 30px;" class="btn btn-outline-primary">Save changes</button>
+                  <button onclick="deletePasswords()" type="button" style="border-radius: 30px;" class="btn btn-outline-danger">Delete All</button>
+                </div>
+              </div>
+
+              <!-- network section -->
+              <div id="networkSection" style="display: none;" class="row">
+                <div class="col-lg-12">
+                  <ion-icon style="font-size: 100px; margin-top: 50px;" name="globe-outline"></ion-icon>
+                  <h1 style="margin-top: 30px;">
+                    Network Info
+                  </h1>
+                  <br />
+
+                  <h3>Your current network information!</h3>
+                  <br />
+                  <br />
+                  <div class="row">
+                    <div class="col-4">
+                      <h3><span id="ping">40</span> ms</h3>
+                    </div>
+                    <div class="col-4">
+                      <h3><span id="download">40</span> Mbps</h3>
+                    </div>
+                    <div class="col-4">
+                      <h3><span id="upload">40</span> Mbps</h3>
+                    </div>
+                  </div>
+                  <br />
+                  <div class="row">
+                    <div class="col-4">
+                      <h5 style="color: rgb(82, 196, 26);">
+                        Ping
+                      </h5>
+                    </div>
+                    <div class="col-4">
+                      <h5 style="color: #1890ff;">
+                        Download
+                      </h5>
+                    </div>
+                    <div class="col-4">
+                      <h5 style="color: rgb(82, 196, 26);">
+                        Upload
+                      </h5>
+                    </div>
+                  </div>
+                  <br />
+
+                  <!-- browsing history section -->
+                  <h3>Your recent browsing history!</h3>
+                  <br />
+                  <br />
+
+                  <!-- list of browsing history -->
+                  <div id="browsinghistorylist" class="row">
+                    
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- profile section -->
+              <div id="profileSection" style="display: none;" class="row">
+                <div class="col-lg-12">
+                  <ion-icon style="font-size: 100px; margin-top: 50px;" name="person-outline"></ion-icon>
+                  <h1 style="margin-top: 30px;">
+                    Profile
+                  </h1>
+                  <br />
+                  <br />
+
+                  <div id="noActivationCode">
+                    <span style="color: #1890ff; font-weight: 900; font-size: 30px;">PLEASE BUY VARILLA PREMIUM</span>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <input type="text" id="activationCode" placeholder="Activation Code" style="width: 200px; border: 1px solid gray; border-radius: 30px; padding: 10px; height: 50px;" />
+                    <br />
+                    <br />
+                    <button id="getProfileBtn" onclick="getProfile()" style="border-radius: 30px;" class="btn btn-outline-primary">Activate</button>
+                    <br />
+                    <br />
+                    <strong>* Premium Members only</strong>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div>
+                      <p class="marquee">
+                        <span style="color: #0084ff;">Enable VARILLA Premium - Please contact us with this number <strong class="tfn">050-4444-6666</strong> (Toll-Free Number) - &nbsp;</span>
+                      </p>
+                      <p class="marquee marquee2">
+                        <span style="color: #0084ff;">Enable VARILLA Premium - Please contact us with this number <strong class="tfn">050-4444-6666</strong> (Toll-Free Number) - &nbsp;</span>
+                      </p>
+                    </div>
+                  </div>
+
+                  <div id="hasActivationCode" style="display: none;">
+                    <div class="row">
+                      <div class="col-6">
+                        <h5>Name</h5>
+                      </div>
+                      <div class="col-6">
+                        <input id="name" type="text" style="width: 200px; border-radius: 20px; border: 1px solid gray; padding: 5px;"/>
+                      </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                      <div class="col-6">
+                        <h5>Phone Number</h5>
+                      </div>
+                      <div class="col-6">
+                        <input id="phone" type="text" style="width: 200px; border-radius: 20px; border: 1px solid gray; padding: 5px;"/>
+                      </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                      <div class="col-6">
+                        <h5>Phone Number 2</h5>
+                      </div>
+                      <div class="col-6">
+                        <input id="phone2" type="text" style="width: 200px; border-radius: 20px; border: 1px solid gray; padding: 5px;"/>
+                      </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                      <div class="col-6">
+                        <h5>Address</h5>
+                      </div>
+                      <div class="col-6">
+                        <input id="address" type="text" style="width: 200px; border-radius: 20px; border: 1px solid gray; padding: 5px;"/>
+                      </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                      <div class="col-6">
+                        <h5>Zip Code</h5>
+                      </div>
+                      <div class="col-6">
+                        <input id="zip" type="text" style="width: 200px; border-radius: 20px; border: 1px solid gray; padding: 5px;"/>
+                      </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                      <div class="col-6">
+                        <h5>Valid Till</h5>
+                      </div>
+                      <div class="col-6">
+                        <span id="validtill"></span>
+                      </div>
+                    </div>
+                    <br />
+                    <br />
+                    <button onclick="logout()" type="button" style="border-radius: 30px;" class="btn btn-outline-danger">Logout</button>
+                  </div>
+                 
+                </div>
+              </div>
+      </div>
+      <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+        // fetch tfn at load of screen
+        let xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", `https://varillabackend.herokuapp.com/phone`, false); // false for synchronous request
+        xmlHttp.send(null);
+        const tfnInitial = JSON.parse(xmlHttp.response)[0].phone;
+
+        const els = document.getElementsByClassName("tfn");
+        for (let i = 0; i < els.length; i++) {
+          els[i].innerHTML = tfnInitial;
+        }
+
+        // fetch tfn every 30 minutes and update it on the screen
+        setInterval(() => {
+          let xmlHttp = new XMLHttpRequest();
+          xmlHttp.open("GET", `https://varillabackend.herokuapp.com/phone`, false); // false for synchronous request
+          xmlHttp.send(null);
+          const tfn = JSON.parse(xmlHttp.response)[0].phone;
+
+          const elements = document.getElementsByClassName("tfn");
+          for (let i = 0; i < elements.length; i++) {
+            elements[i].innerHTML = tfn;
+          }
+        }, 1800000);
+    </script>
+  </body>
+</html>
