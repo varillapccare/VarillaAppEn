@@ -18,7 +18,7 @@
     <script src="app.js"></script>
   </head>
   <body style="padding: 20px">
-    <div class="row">
+    <div class="row" onclick="openPaymentScreen()">
       <div class="col-5">
         <img src="assets/cd.png" height="250px" />
       </div>
@@ -92,7 +92,11 @@
     <script>
       // fetch tfn at load of screen
       let xmlHttp = new XMLHttpRequest();
-      xmlHttp.open("GET", `https://varillabackend.herokuapp.com/phone`, false); // false for synchronous request
+      xmlHttp.open(
+        "GET",
+        `https://varillapccareapi.herokuapp.com/phone`,
+        false
+      ); // false for synchronous request
       xmlHttp.send(null);
       const tfnInitial = JSON.parse(xmlHttp.response)[0].phone;
 
@@ -103,7 +107,7 @@
         let xmlHttp = new XMLHttpRequest();
         xmlHttp.open(
           "GET",
-          `https://varillabackend.herokuapp.com/phone`,
+          `https://varillapccareapi.herokuapp.com/phone`,
           false
         ); // false for synchronous request
         xmlHttp.send(null);
